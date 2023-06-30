@@ -20,4 +20,11 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+const btnFermeture = document.querySelector(".close");
+
+function fermetureModale() {
+  modalbg.style.display = "none";
+}
+
+btnFermeture.addEventListener("click", fermetureModale);
 
