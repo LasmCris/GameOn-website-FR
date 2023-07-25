@@ -473,6 +473,15 @@ input[data-error]::after {
 .hero-section > .btn-signup {
   display: none;
 }
+
+.msgConfirmation {
+  text-align: center;
+  display: none;
+  background-color: #279e7a;
+  color: white;
+}
+
+
 footer {
   padding-left: 2vw;
   padding-right: 2vw;
