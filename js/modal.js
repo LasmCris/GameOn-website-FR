@@ -25,6 +25,29 @@ const btnFermeture = document.querySelector(".close");
 
 function fermetureModale() {
   modalbg.style.display = "none";
+  //Reset des champs du formulaire
+  champPrenom.value = "";
+  champNom.value = "";
+  champMail.value = "";
+  champNaissance.value = "";
+  champNbrDeTournois.value = "";
+  jaiLu.removeAttribute("checked");
+
+  //Retrait de radio coché a la fermeture de la modale
+  const radios = document.querySelectorAll('input[name="location"]');
+  for (let i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      radios[i].checked = false;
+    }
+  }
+  //Retrait msg d'erreur a la fermeture de la modale
+  const champError = document.querySelectorAll(".formData");
+  for (let i = 0; i < champError.length; i++) {
+    champError[i].dataset.error = "";
+    champError[i].dataset.errorVisible = false;
+  }
+  //Retrait du message de confirmation a la fermeture de la modale
+  document.querySelector(".msgConfirmation").innerHTML = "";
 }
 btnFermeture.addEventListener("click", fermetureModale);
 
@@ -117,10 +140,8 @@ function validateMail() {
 
 function validateBirthDate() {
   const naissance = champNaissance.value;
-  const dateNaissance = new Date(naissance);
-  const now = new Date();
 
-  if (dateNaissance.getDate() >= now.getDate()) {
+  if (isNaN(Date.parse(naissance))) {
     listeFormData[3].dataset.error = errorBirthdate;
     listeFormData[3].dataset.errorVisible = true;
     return false;
@@ -134,7 +155,7 @@ function validateBirthDate() {
 function validateNbrTournois() {
   const nbrDeTournois = champNbrDeTournois.value.trim();
   // Expression régulière pour vérifier si la valeur est numérique
-  var numericRegex = new RegExp("^[0-9]+$");
+  const numericRegex = new RegExp("^[0-9]+$");
 
   if (!numericRegex.test(nbrDeTournois)) {
     // Afficher le message d'erreur en utilisant les attributs de données
@@ -212,3 +233,11 @@ form.addEventListener("submit", (event) => {
     ouverturMsgConf();
   }
 });
+
+// const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+// const workDay = week.filter(function(element, index) {
+//   return (index > 0 && index < 6);
+// })
+
+// console.log(workDay);
