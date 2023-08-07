@@ -31,7 +31,7 @@ function fermetureModale() {
   champMail.value = "";
   champNaissance.value = "";
   champNbrDeTournois.value = "";
-  jaiLu.removeAttribute("checked");
+  jaiLu.checked = false;
 
   //Retrait de radio coché a la fermeture de la modale
   const radios = document.querySelectorAll('input[name="location"]');
@@ -233,11 +233,3 @@ form.addEventListener("submit", (event) => {
     ouverturMsgConf();
   }
 });
-
-// const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-// const workDay = week.filter(function(element, index) {
-//   return (index > 0 && index < 6);
-// })
-
-// console.log(workDay);
